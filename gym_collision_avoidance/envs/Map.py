@@ -1,6 +1,7 @@
 import numpy as np
 import imageio
-import scipy.misc
+# import scipy.misc
+import PIL.Image
 
 class Map():
     def __init__(self, x_width, y_width, grid_cell_size, map_filename=None):
@@ -15,9 +16,12 @@ class Map():
             self.static_map = np.zeros(dims, dtype=bool)
         else:
             self.static_map = imageio.imread(map_filename)
+            if len(self.static_map.shape) == 3:
+                self.static_map = self.static_map[:,:,0]
             if self.static_map.shape != dims:
                 # print("Resizing map from: {} to {}".format(self.static_map.shape, dims))
-                self.static_map = scipy.misc.imresize(self.static_map, dims, interp='nearest')
+                # self.static_map = scipy.misc.imresize(self.static_map, dims, interp='nearest')
+                self.static_map = np.array(PIL.Image.fromarray(self.static_map).resize(dims, resample=PIL.Image.NEAREST))
             self.static_map = np.invert(self.static_map).astype(bool)
 
         self.origin_coords = np.array([(self.x_width/2.)/self.grid_cell_size, (self.y_width/2.)/self.grid_cell_size])

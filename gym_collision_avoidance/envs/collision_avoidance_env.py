@@ -13,6 +13,7 @@ import sys
 import gym
 import gym.spaces
 import numpy as np
+import matplotlib.pyplot as plt
 
 from gym_collision_avoidance.envs import Config
 from gym_collision_avoidance.envs import test_cases as tc
@@ -498,7 +499,7 @@ class CollisionAvoidanceEnv(gym.Env):
                     agent.pos_global_frame
                 )
                 mask = self.map.get_agent_map_indices([pi, pj], agent.radius)
-                # plt.figure('static map')
+                plt.figure('static map')
                 # plt.imshow(self.map.static_map + mask)
                 # plt.pause(0.1)
                 if in_map and np.any(self.map.static_map[mask]):

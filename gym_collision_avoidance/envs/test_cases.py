@@ -208,6 +208,51 @@ def get_testcase_two_agents_laserscanners():
     ]
     return agents
 
+def get_testcase_hallway_laserscanners(policies=["GA3C_CADRL", "RVO"]):
+    goal_x = 1
+    goal_y = 5
+    agents = [
+        Agent(
+            goal_x,
+            -goal_y,
+            goal_x,
+            goal_y,
+            0.25,
+            1.0,
+            0.0,
+            policy_dict["GA3C_CADRL"],
+            UnicycleDynamics,
+            [LaserScanSensor],
+            0,
+        ),
+        Agent(
+            goal_x,
+            -3,
+            goal_x,
+            3,
+            0.5,
+            0.5,
+            0.0,
+            policy_dict["GA3C_CADRL"],
+            UnicycleDynamics,
+            [LaserScanSensor],
+            0,
+        ),
+        Agent(
+            -goal_x,
+            goal_y,
+            -goal_x,
+            -goal_y,
+            0.5,
+            1.0,
+            np.pi,
+            policy_dict["RVO"],
+            UnicycleDynamics,
+            [LaserScanSensor],
+            1,
+        ),
+    ]
+    return agents
 
 def get_testcase_random(
     num_agents=None,

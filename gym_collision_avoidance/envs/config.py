@@ -36,7 +36,7 @@ class Config(object):
         self.REWARD_WIGGLY_BEHAVIOR = 0.0
         self.WIGGLY_BEHAVIOR_THRESHOLD = np.inf
         self.COLLISION_DIST = 0.0 # meters between agents' boundaries for collision
-        self.GETTING_CLOSE_RANGE = 0.2 # meters between agents' boundaries for collision
+        self.GETTING_CLOSE_RANGE = 0.2 # meters between agents' boundaries for getting close
         # self.SOCIAL_NORMS = "right"
         # self.SOCIAL_NORMS = "left"
         self.SOCIAL_NORMS = "none"
@@ -205,6 +205,7 @@ class Example(EvaluateConfig):
         self.SAVE_EPISODE_PLOTS = True
         self.PLOT_CIRCLES_ALONG_TRAJ = True
         self.ANIMATE_EPISODES = True
+        self.USE_STATIC_MAP = True
         # self.SENSING_HORIZON = 4
         # self.PLT_LIMITS = [[-20, 20], [-20, 20]]
         # self.PLT_FIG_SIZE = (10,10)

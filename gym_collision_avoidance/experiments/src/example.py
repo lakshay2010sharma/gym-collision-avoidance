@@ -31,7 +31,8 @@ def main():
     )
 
     # Set agent configuration (start/goal pos, radius, size, policy)
-    agents = tc.get_testcase_two_agents()
+    # agents = tc.get_testcase_two_agents()
+    agents = tc.get_testcase_hallway_laserscanners()
     [
         agent.policy.initialize_network()
         for agent in agents
@@ -39,10 +40,12 @@ def main():
     ]
     env.set_agents(agents)
 
+    env.set_static_map("../envs/world_maps/hallway_crossing.png")
+
     obs = env.reset()  # Get agents' initial observations
 
     # Repeatedly send actions to the environment based on agents' observations
-    num_steps = 100
+    num_steps = 200
     for i in range(num_steps):
         # Query the external agents' policies
         # e.g., actions[0] = external_policy(dict_obs[0])
